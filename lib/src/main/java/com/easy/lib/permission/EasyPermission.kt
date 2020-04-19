@@ -24,12 +24,13 @@ object EasyPermission {
      */
     fun requestPermission(
         thisActivity: Activity,
+        permissions: Array<Permission>,
         hasPermission: (Boolean) -> Unit,
         shouldShowRequestPermissionRationale: (() -> Unit)?
     ) {
         this.hasPermission = hasPermission
         //没有获取权限
-        if (!checkPermission(thisActivity, arrayOf(Permission.STORAGE))) {
+        if (!checkPermission(thisActivity, permissions)) {
 
             val shouldShowRequestPermission = ActivityCompat.shouldShowRequestPermissionRationale(
                 thisActivity,
