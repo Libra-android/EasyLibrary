@@ -1,0 +1,16 @@
+/.gradle
+/.idea
+/gradle
+/.gitignore
+/EasyLibrary.iml
+/gradlew
+/gradlew.bat
+/local.properties
+/work-EasyLibrary.iml
+/app/.gitignore
+/app/app.iml
+/app/proguard-rules.pro
+/build
+/lib/*.gitignore
+/lib/*.pro
+/lib/*.iml
