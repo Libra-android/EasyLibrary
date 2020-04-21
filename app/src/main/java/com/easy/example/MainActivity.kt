@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-//    private val test by lazy {
-//        Test()
-//    }
+    private val test by lazy {
+        Test()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
             seekBar.progress = 50
         }
 
-//        test.initClient()
-//        test.startTask()
+        test.initClient()
+        test.startTask()
 
         //startService(Intent(this, TestService::class.java))
 
