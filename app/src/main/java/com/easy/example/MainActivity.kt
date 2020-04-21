@@ -5,10 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,14 +18,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            seekBar.setProgress(50,true)
-        }else{
-            seekBar.progress = 50
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            seekBar.setProgress(50,true)
+//        }else{
+//            seekBar.progress = 50
+//        }
 
         test.initClient()
-        test.startTask()
+        //test.startTask()
+
 
         //startService(Intent(this, TestService::class.java))
 

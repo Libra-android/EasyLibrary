@@ -1,6 +1,10 @@
 package com.easy.example;
 
+import android.os.Looper;
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -10,6 +14,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
+import okio.ByteString;
 
 /**
  * @author too young
@@ -38,13 +43,13 @@ public class Test {
             public void run() {
                 if(mWebSocket == null) return;
                 msgCount++;
-                boolean isSuccessed = mWebSocket.send("msg" + msgCount + "-" + System.currentTimeMillis());
-                Log.d("aaaaaa", isSuccessed + "---");
+                boolean isSuccessed = mWebSocket.send("http://ws.usechain.vip:81/endpointWisely/websocket");
+                //Log.d("aaaaaa", isSuccessed + "---");
                 //除了文本内容外，还可以将如图像，声音，视频等内容转为ByteString发送
                 //boolean send(ByteString bytes);
             }
         };
-        mTimer.schedule(timerTask, 0, 1000);
+        mTimer.schedule(timerTask, 0, 25000);
     }
 
     public void initClient() {
@@ -54,19 +59,29 @@ public class Test {
             @Override
             public void onOpen(WebSocket webSocket, Response response) {
                 mWebSocket = webSocket;
-                Log.d("aaaaaa", "");
-                Log.d("aaaaaa","client onOpen");
-                Log.d("aaaaaa","client request header:" + response.request().headers());
-                Log.d("aaaaaa","client response header:" + response.headers());
-                Log.d("aaaaaa","client response:" + response);
+                if (Looper.myLooper() != Looper.getMainLooper()) {
+                    JSONObject jo = new JSONObject();
+                    Log.e("websocket", "服务器*****");
+
+                } else {
+                    Log.e("websocket", "服务器连接成功");
+                }
                 //开启消息定时发送
                 startTask();
             }
 
             @Override
             public void onMessage(WebSocket webSocket, String text) {
-                Log.d("aaaaaa","client onMessage");
-                Log.d("aaaaaa","message:" + text);
+                Log.d("aaaaaaonMessage","client onMessage");
+                Log.d("aaaaaaonMessage","message:" + text);
+            }
+
+            @Override
+            public void onMessage(WebSocket webSocket, ByteString bytes) {
+                super.onMessage(webSocket, bytes);
+                Log.d("aaaaaaonMessage","client onMessage");
+                Log.d("aaaaaaonMessage","message:" + bytes);
+
             }
 
             @Override
