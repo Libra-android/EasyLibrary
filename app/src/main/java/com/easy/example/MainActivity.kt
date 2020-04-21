@@ -1,8 +1,5 @@
 package com.easy.example
 
-import android.app.Activity
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -11,36 +8,45 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.AlarmClock
-import android.util.Log
-import androidx.core.app.AlarmManagerCompat
-import java.text.SimpleDateFormat
-import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val test by lazy {
+        Test()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            seekBar.setProgress(50,true)
+        }else{
+            seekBar.progress = 50
+        }
+
+        test.initClient()
+        test.startTask()
+
         //startService(Intent(this, TestService::class.java))
 
-        val manager = getSystemService(Activity.ALARM_SERVICE) as AlarmManager
-
-        val intent = PendingIntent.getActivity(this, 0, openDing(), 0)
-        manager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            System.currentTimeMillis() + 10000,
-            8000,
-            intent
-        )
-
-        AlarmManagerCompat.setExact(
-            manager,
-            AlarmManager.RTC_WAKEUP,
-            System.currentTimeMillis() + 10000,
-            intent
-        )
+//        val manager = getSystemService(Activity.ALARM_SERVICE) as AlarmManager
+//
+//        val intent = PendingIntent.getActivity(this, 0, openDing(), 0)
+//        manager.setRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            System.currentTimeMillis() + 10000,
+//            8000,
+//            intent
+//        )
+//
+//        AlarmManagerCompat.setExact(
+//            manager,
+//            AlarmManager.RTC_WAKEUP,
+//            System.currentTimeMillis() + 10000,
+//            intent
+//        )
 
     }
 

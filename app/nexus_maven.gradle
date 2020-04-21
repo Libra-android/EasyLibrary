@@ -1,0 +1,36 @@
+//nexus_maven.gradle的中的配置信息如下
+apply plugin:'maven' // 引入maven工具
+
+uploadArchives{
+
+    repositories {
+
+        mavenDeployer {
+
+            repository(url:"http://192.168.0.146:8081/nexus/content/repositories/test001/") {//仓库的uri
+
+                authentication(userName:"admin", password: "admin123")// 登入账号和密码
+
+            }
+
+            pom.project {
+
+                name 'EasyLibrary'//项目名称
+
+                version '1.0.0'//版本号
+
+                artifactId 'app'//最后下载的aar包名称就是这个
+
+                groupId 'com.easy.example'// 建议使用包命
+
+                packaging 'aar'//打包类型
+
+                description 'app for Android'// 描述信息
+
+            }
+
+        }
+
+    }
+
+}
