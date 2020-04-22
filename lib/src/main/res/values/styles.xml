@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="pop_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_buttom_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_buttom_exit</item>
+    </style>
+
+    <style name="pop_anim_right" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_right_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_right_exit</item>
+    </style>
+
+    <style name="pop_alpha_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out</item>
+    </style>
+
+</resources>
