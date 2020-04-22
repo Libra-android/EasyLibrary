@@ -353,7 +353,7 @@ public class Banner extends FrameLayout {
                 if (position == 0) {
                     page.setScaleX(1);
                     page.setScaleY(1);
-                    Log.d("aaaaaaaaa",  minHeight + "---" + maxHeight);
+
                 } else if (position < 1 && position > -1) {
                     float changeHeight = (1 - Math.abs(position)) * ScaleY;
                     float scale = (changeHeight + minHeight) / maxHeight;
