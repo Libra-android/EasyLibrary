@@ -7,6 +7,10 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.easy.lib.dialog.LoadDialog
+import com.easy.lib.network.EasyStompClient
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +28,19 @@ class MainActivity : AppCompatActivity() {
 //            seekBar.progress = 50
 //        }
 
-        test.initClient()
+
+        textView.setOnClickListener {
+            Log.d("aaaaaaaaaa", "阅读")
+
+            val loader =  LoadDialog.loadView(this)
+            loader.setData { view, loadView, textView ->
+                textView.text = "密码错误，您当前还剩下4次机会"
+            }
+            loader.show()
+        }
+
+
+
         //test.startTask()
 
 
@@ -47,6 +63,11 @@ class MainActivity : AppCompatActivity() {
 //            intent
 //        )
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EasyStompClient.disconnectStomp()
     }
 
 
