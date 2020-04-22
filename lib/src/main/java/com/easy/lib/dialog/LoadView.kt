@@ -21,12 +21,14 @@ class LoadView : View {
         attrs
     )
 
-    private val xx = 0.45f
-    private val yy = 0.85F
+    private val xx = 0.40f
+    private val yy = 0.7F
 
     private val colors = arrayListOf("#503A4864", "#003A4864", "#503A4864", "#3A4864")
     private var test = 0
     private val lineList = arrayListOf<FloatArray>()
+
+    private val mTimer = Timer()
 
     constructor(
         context: Context?,
@@ -39,7 +41,6 @@ class LoadView : View {
     }
 
     private fun startTask() {
-        val mTimer = Timer()
         val timerTask: TimerTask = object : TimerTask() {
             override fun run() {
                 if (test == 11) {
@@ -183,7 +184,11 @@ class LoadView : View {
             }
 
         }
+    }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mTimer.cancel()
     }
 
 }
