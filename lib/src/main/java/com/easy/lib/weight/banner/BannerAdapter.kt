@@ -43,7 +43,7 @@ internal class BannerAdapter : PagerAdapter() {
         val realPosition = position % bannerList.size
         //得到复用的View
         val view =
-            loopBannerHolder!!.bindView(realPosition, bannerList[realPosition] as ArrayList<*>)
+            loopBannerHolder!!.bindView(realPosition, bannerList[realPosition])
         container.addView(view)
         return view
     }
