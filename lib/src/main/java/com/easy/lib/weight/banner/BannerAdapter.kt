@@ -3,11 +3,12 @@ package com.easy.lib.weight.banner
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import java.util.*
+import kotlin.collections.ArrayList
 
 internal class BannerAdapter : PagerAdapter() {
-    private val bannerList: MutableList<Any>
-    private var loopBannerHolder: LoopBannerHolder<Any>? = null
+    private val bannerList = ArrayList<Any>()
+
+    private var loopBannerHolder: LoopBannerHolder? = null
     private var DAYTIME = 500
     fun setLoop(loop: Boolean) {
         if (loop) {
@@ -15,12 +16,12 @@ internal class BannerAdapter : PagerAdapter() {
         }
     }
 
-    fun setData(data: List<Any>) {
+    fun <T: Any> setData(data: ArrayList<T>) {
         bannerList.clear()
         bannerList.addAll(data)
     }
 
-    fun createHolder(holder: LoopBannerHolder<Any>?) {
+    fun createHolder(holder: LoopBannerHolder) {
         loopBannerHolder = holder
     }
 
@@ -42,7 +43,7 @@ internal class BannerAdapter : PagerAdapter() {
         val realPosition = position % bannerList.size
         //得到复用的View
         val view =
-            loopBannerHolder!!.bindView(realPosition, bannerList[realPosition])
+            loopBannerHolder!!.bindView(realPosition, bannerList[realPosition] as ArrayList<*>)
         container.addView(view)
         return view
     }
@@ -61,7 +62,4 @@ internal class BannerAdapter : PagerAdapter() {
     val realCount: Int
         get() = bannerList.size
 
-    init {
-        bannerList = ArrayList<Any>()
-    }
 }

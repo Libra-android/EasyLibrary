@@ -6,10 +6,12 @@ import android.view.View
  * @author liu
  * @date 2017/11/8
  */
-abstract class LoopBannerHolder<T> {
+abstract class LoopBannerHolder {
     abstract fun createView(): View
-    abstract fun bindData(itemView: View?, position: Int, data: T)
-    fun bindView(position: Int, data: T): View {
+
+    abstract fun <T> bindData(itemView: View?, position: Int, data: T)
+
+    fun <T> bindView(position: Int, data: T): View {
         val itemView = view
         bindData(itemView, position, data)
         return itemView

@@ -18,9 +18,11 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
  * @date 2017/11/6
  */
 class Banner : FrameLayout {
-    
+
     private var viewPager: ViewPager? = null
-    private var adapter: BannerAdapter? = null
+    private val adapter by lazy {
+        BannerAdapter()
+    }
     private var isFirst = true //判断是不是第一次创建用于调整adapter 到正确的显示位置
     private var isTuning = false //判断是否正在轮播
     private var selectPaint //选中的画笔
@@ -64,11 +66,11 @@ class Banner : FrameLayout {
         override fun onPageSelected(position: Int) {}
         override fun onPageScrollStateChanged(state: Int) {
             if (isLoop && state == ViewPager.SCROLL_STATE_IDLE) {
-                if (adapter!!.count != 0) {
+                if (adapter.count != 0) {
                     if (viewPager!!.currentItem == 0) {
-                        viewPager!!.setCurrentItem(adapter!!.count / 2, false)
-                    } else if (viewPager!!.currentItem == adapter!!.count - 1) {
-                        viewPager!!.setCurrentItem(adapter!!.count / 2 - 1, false)
+                        viewPager!!.setCurrentItem(adapter.count / 2, false)
+                    } else if (viewPager!!.currentItem == adapter.count - 1) {
+                        viewPager!!.setCurrentItem(adapter.count / 2 - 1, false)
                     }
                 }
             }
@@ -92,27 +94,26 @@ class Banner : FrameLayout {
      * @param holder
      * @param data
      */
-    fun createHolder(
-        holder: LoopBannerHolder<Any>?,
-        data: List<Any>,
+    fun <T : Any> createHolder(
+        holder: LoopBannerHolder,
+        data: ArrayList<T>,
         loop: Boolean
     ) {
         isLoop = loop
         pointCount = data.size
         locationX = 0f
         var lastCurtTime = 0
-        if (!isFirst && adapter!!.realCount != 0) {
-            val realCount = adapter!!.realCount
+        if (!isFirst && adapter.realCount != 0) {
+            val realCount = adapter.realCount
             val curtCount = viewPager!!.currentItem / realCount
             lastCurtTime = curtCount * data.size + viewPager!!.currentItem % realCount
         }
-        adapter = BannerAdapter()
-        adapter!!.setData(data)
-        adapter!!.createHolder(holder)
-        adapter!!.setLoop(loop)
+        adapter.setData(data)
+        adapter.createHolder(holder)
+        adapter.setLoop(loop)
         viewPager!!.adapter = adapter
         if (isFirst) {
-            lastCurtTime = adapter!!.count / 2
+            lastCurtTime = adapter.count / 2
             isFirst = false
         }
         viewPager!!.setCurrentItem(lastCurtTime, false)
@@ -199,7 +200,7 @@ class Banner : FrameLayout {
     }
 
     private var mEnabled = true
-    
+
     fun mEnabledTuning(mEnabled: Boolean) {
         this.mEnabled = mEnabled
     }
