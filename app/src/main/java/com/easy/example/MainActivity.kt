@@ -7,10 +7,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.easy.lib.dialog.LoadDialog
 import com.easy.lib.network.EasyStompClient
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,19 +24,27 @@ class MainActivity : AppCompatActivity() {
 //        }else{
 //            seekBar.progress = 50
 //        }
+        //
+        EasyStompClient.initClient("ws://ws.usechain.vip:81/endpointWisely/websocket", true)
+        EasyStompClient.connectStomp()
+        EasyStompClient.topic("/topic/oldKline/38/1"){
 
-
-        textView.setOnClickListener {
-            Log.d("aaaaaaaaaa", "阅读")
-
-            val loader =  LoadDialog.loadView(this)
-            loader.setData { view, loadView, textView ->
-                textView.text = "密码错误，您当前还剩下4次机会"
-            }
-            loader.show()
         }
+        EasyStompClient.sendMessage("/findListByMarketId/38/1")
 
+        EasyStompClient.sendMessage("/findListByMarketId/38/5")
 
+        //test.initClient()
+
+//        textView.setOnClickListener {
+//            Log.d("aaaaaaaaaa", "阅读")
+//
+//            val loader =  LoadDialog.loadView(this)
+//            loader.setData { view, loadView, textView ->
+//                textView.text = "密码错误，您当前还剩下4次机会"
+//            }
+//            loader.show()
+//        }
 
         //test.startTask()
 
