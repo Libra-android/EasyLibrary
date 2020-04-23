@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.easy.lib.network.EasyStompClient
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
         EasyStompClient.sendMessage("/findListByMarketId/38/1")
 
-        EasyStompClient.sendMessage("/findListByMarketId/38/5")
+        Gson().fromJson<Any>("adsa", object : TypeToken<List<String?>?>() {}.type)
+
+        //EasyStompClient.sendMessage("/findListByMarketId/38/5")
 
         //test.initClient()
 

@@ -2,6 +2,10 @@ package com.easy.example;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,6 +41,8 @@ public class Test {
     }
 
     public void initClient() {
+
+        new Gson().fromJson("", new TypeToken<List<String>>(){}.getType());
 
         OkHttpClient client = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
