@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">library</string>
+
+    <!-- Error View -->
+    <string name="error_view_click_to_refresh">点击屏幕,重新加载</string>
+    <string name="error_view_no_data">暂无内容</string>
+    <string name="error_view_loading">加载中…</string>
+    <string name="error_view_load_error_click_to_refresh">内容加载失败\n点击重新加载</string>
+    <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="qr_scan_tips">将二维码/条码放入框内，即可自动扫描</string>
+    <string name="version_unknown">版本未知</string>
+
+
+    <!-- 加载滚动条样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progressloading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="AuthorTabLayoutTextStyle">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
+</resources>
