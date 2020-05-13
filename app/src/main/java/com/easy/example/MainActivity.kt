@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easy.example.adaapter.ListAdapter
@@ -14,12 +13,11 @@ import com.easy.example.databinding.ActivityMainBinding
 import com.easy.example.view.image.ImageViewModel
 import com.easy.example.view.text.TextViewModel
 import com.easy.lib.network.EasyStompClient
+import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class MainActivity : AppCompatActivity() {
-
-    private val test by lazy {
-        Test()
-    }
 
     private val list = arrayListOf<BaseCustomViewModel>()
 
@@ -67,8 +65,6 @@ class MainActivity : AppCompatActivity() {
         list.add(TextViewModel("***"))
 
         binding.recyclerView.adapter?.notifyDataSetChanged()
-
-
 
 
     }
