@@ -7,10 +7,13 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.easy.lib.dialog.LoadDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.easy.example.adaapter.ListAdapter
+import com.easy.example.base.BaseCustomViewModel
+import com.easy.example.databinding.ActivityMainBinding
+import com.easy.example.view.image.ImageViewModel
+import com.easy.example.view.text.TextViewModel
 import com.easy.lib.network.EasyStompClient
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,50 +21,55 @@ class MainActivity : AppCompatActivity() {
         Test()
     }
 
+    private val list = arrayListOf<BaseCustomViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            seekBar.setProgress(50,true)
-//        }else{
-//            seekBar.progress = 50
-//        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-
-        textView.setOnClickListener {
-            Log.d("aaaaaaaaaa", "阅读")
-
-            val loader =  LoadDialog.loadView(this)
-            loader.setData { view, loadView, textView ->
-                textView.text = "密码错误，您当前还剩下4次机会"
-            }
-            loader.show()
-        }
+        binding.recyclerView.adapter = ListAdapter(list)
 
 
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
 
-        //test.startTask()
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+
+        list.add(TextViewModel("---"))
+        list.add(TextViewModel("--***-"))
+        list.add(TextViewModel("***"))
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+
+        list.add(TextViewModel("---"))
+        list.add(TextViewModel("--***-"))
+        list.add(TextViewModel("***"))
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+
+        list.add(TextViewModel("---"))
+        list.add(TextViewModel("--***-"))
+        list.add(TextViewModel("***"))
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+        list.add(ImageViewModel())
+
+        list.add(TextViewModel("---"))
+        list.add(TextViewModel("--***-"))
+        list.add(TextViewModel("***"))
+
+        binding.recyclerView.adapter?.notifyDataSetChanged()
 
 
-        //startService(Intent(this, TestService::class.java))
 
-//        val manager = getSystemService(Activity.ALARM_SERVICE) as AlarmManager
-//
-//        val intent = PendingIntent.getActivity(this, 0, openDing(), 0)
-//        manager.setRepeating(
-//            AlarmManager.RTC_WAKEUP,
-//            System.currentTimeMillis() + 10000,
-//            8000,
-//            intent
-//        )
-//
-//        AlarmManagerCompat.setExact(
-//            manager,
-//            AlarmManager.RTC_WAKEUP,
-//            System.currentTimeMillis() + 10000,
-//            intent
-//        )
 
     }
 

@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.easy.example.base.BaseCustomViewModel;
+import com.easy.example.view.image.ImageListView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -44,6 +46,12 @@ public class Test {
 
         mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, wsUrl);
         resetSubscriptions();
+
+        List list = new ArrayList<BaseCustomViewModel>();
+
+        if(list.get(0) instanceof ImageListView){
+
+        }
 
 
 //        client.newWebSocket(request, new WebSocketListener() {
