@@ -1,21 +1,18 @@
 package com.easy.example
 
+import android.app.ActivityOptions
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.easy.example.adaapter.ListAdapter
 import com.easy.example.base.BaseCustomViewModel
 import com.easy.example.databinding.ActivityMainBinding
-import com.easy.example.view.image.ImageViewModel
-import com.easy.example.view.text.TextViewModel
 import com.easy.lib.network.EasyStompClient
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import androidx.core.app.ActivityOptionsCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,45 +23,13 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.textView.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(Intent(this, TestActivity::class.java), ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            }
 
-        binding.recyclerView.adapter = ListAdapter(list)
+        }
 
-
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-
-        list.add(TextViewModel("---"))
-        list.add(TextViewModel("--***-"))
-        list.add(TextViewModel("***"))
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-
-        list.add(TextViewModel("---"))
-        list.add(TextViewModel("--***-"))
-        list.add(TextViewModel("***"))
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-
-        list.add(TextViewModel("---"))
-        list.add(TextViewModel("--***-"))
-        list.add(TextViewModel("***"))
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-        list.add(ImageViewModel())
-
-        list.add(TextViewModel("---"))
-        list.add(TextViewModel("--***-"))
-        list.add(TextViewModel("***"))
-
-        binding.recyclerView.adapter?.notifyDataSetChanged()
 
 
     }

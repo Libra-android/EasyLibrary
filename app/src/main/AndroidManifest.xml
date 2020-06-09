@@ -20,6 +20,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TestActivity" >
+
+
+
+        </activity>
+
+        <activity android:name=".Test2Activity" >
+
+
+
+        </activity>
+
         <service android:name=".TestService"
             android:enabled="true"
             android:exported="true"
