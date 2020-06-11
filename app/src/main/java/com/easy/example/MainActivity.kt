@@ -1,6 +1,5 @@
 package com.easy.example
 
-import android.app.ActivityOptions
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -13,6 +12,9 @@ import com.easy.example.databinding.ActivityMainBinding
 import com.easy.lib.network.EasyStompClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.easy.example.adaapter.ListAdapter
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.recyclerView.adapter = ListAdapter()
 
 
 
