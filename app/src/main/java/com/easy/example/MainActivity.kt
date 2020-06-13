@@ -15,11 +15,14 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easy.example.adaapter.ListAdapter
 import com.easy.example.layoutManager.CustomLayoutManager
+import com.easy.example.timer.CodeTimer
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
     private val list = arrayListOf<BaseCustomViewModel>()
+
+    private lateinit var codeTimer: CodeTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        codeTimer = CodeTimer(this.lifecycle,binding.textView)
 
         binding.recyclerView.layoutManager = CustomLayoutManager()
 
